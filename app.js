@@ -1,30 +1,15 @@
 import express  from "express";
-import fs from "fs"
-import path from "path"
+import users from "./routes/users.js"
+import cards from "./routes/cards.js"
 
 const app = express()
+app.use(users);
+app.use(cards);
 
-app.get('/', (req, res)=> {
-    res.status(404).send('<h1>Página no encontrada</h1>');
-})
+app.get('/', (req, res) => {
+  res.send('Hello Worlds!');
+});
 
-app.get('/data/cards.js', (req, res)=> {
-    const dataPath = path.join(__dirname, 'data/cards.js');
-
-    fs.readFile(dataPath, { encoding: 'utf8' }, (err, data) => {
-        if (err) {
-          console.log(err);
-          return;
-        }
-    
-        res.writeHead(200, {
-          'Content-Type': 'text/html'
-        });
-    
-})
-
-app.get('/data/users.js', (req, res)=> {
-    const dataPath = path.join(__dirname, 'data/cards.js');
-})
-
-app.listen(3000)
+app.listen(3000, () => {
+  console.log('Server is running on port 3000');
+});
