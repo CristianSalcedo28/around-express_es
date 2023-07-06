@@ -7,7 +7,7 @@ app.use(users);
 app.use(cards);
 
 app.get('/', (req, res) => {
-  res.send('Hello Worlds!');
+  res.send('Error 404, Recurso solicitado no encontrado');
 });
 
 app.listen(3000, () => {
