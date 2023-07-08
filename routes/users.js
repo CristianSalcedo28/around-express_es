@@ -3,15 +3,15 @@ import fs from 'fs';
 
 const router = express.Router();
 
-router.get('/users', (req, res) => {
-  const users = fs.readFileSync('./data/users.json');
+router.get('/', (req, res) => {
+  const users = fs.readFileSync('./data/users.json', { encoding: 'utf8' });
 
   res.json({ users: JSON.parse(users) });
 });
 
-router.get('/users/:id', (req, res) => {
+router.get('/:id', (req, res) => {
   const { id } = req.params;
-  const users = fs.readFileSync('./data/users.json');
+  const users = fs.readFileSync('./data/users.json', { encoding: 'utf8' });
 
   const user = JSON.parse(users).find((item) => item._id === id);
 
